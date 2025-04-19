@@ -16,39 +16,15 @@ const allowedOrigins = [
   "https://user-auth-project.vercel.app", // Production frontend
 ];
 
-app.use((req, res, next) => {
-  const origin = req.headers.origin;
-
-  // Agar origin allowed list mein hai, toh allow karna
-  if (allowedOrigins.includes(origin)) {
-    res.header("Access-Control-Allow-Origin", origin);
-  }
-  res.header("Access-Control-Allow-Credentials", "true"); // ✅ Allow credentials
-  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-
-  if (req.method === "OPTIONS") {
-    return res.sendStatus(200);
-  }
-
-  next();
-});
 
 
-// ✅ CORS Middleware
-// Backend: Express.js CORS setup
 app.use(
   cors({
-    origin: function (origin, callback) {
-      if (allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true); // Allow the origin
-      } else {
-        callback(new Error("Not allowed by CORS"));
-      }
-    },
-    credentials: true, // Allow credentials like cookies
+    origin: allowedOrigins,
+    credentials: true,
   })
 );
+
 
 
 
