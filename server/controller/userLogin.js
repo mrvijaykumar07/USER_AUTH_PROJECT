@@ -35,13 +35,18 @@ const login = async (req, res) => {
   
         console.log("Generated Token:", token); // ✅ Debugging ke liye
   
+
+          
         res.cookie("token", token, {
-          httpOnly: true,
-          secure: false, // ✅ Localhost pe false rakho
-          sameSite: "lax", // ✅ Local pe "lax" better hai
-          maxAge: 7 * 24 * 60 * 60 * 1000, // ✅ 7 days
-        });
-        
+            httpOnly: true,
+            secure: true, // Set to true in production to send cookies only over HTTPS
+            sameSite: "none", // Or "none" if needed
+            maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+          });
+          
+
+
+
         return res.json({
             success: true,
             message: "You logged in successfully",
