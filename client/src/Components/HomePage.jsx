@@ -8,9 +8,10 @@ const App = () => {
 
   const handleLogout = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/logout", {
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/logout`, {
         withCredentials: true,
       });
+      
 
       if (response.data.success) {
         alert("Logout successful!");

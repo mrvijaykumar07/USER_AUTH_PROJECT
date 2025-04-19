@@ -15,14 +15,15 @@ const DataProvider = ({ children }) => {
     const fetchUser = async () => {
       try {
         // ✅ Pehle Token Check Karo
-        const authRes = await axios.get("http://localhost:5000/api/check-auth", { withCredentials: true });
+        const authRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/check-auth`, { withCredentials: true });
+
         console.log("Checking id in token");
 
         if (authRes.data.authenticated) {
           const userId = authRes.data.userId; // ✅ Middleware se mila ID
           console.log("userId",userId);
           // ✅ Ab User Data Fetch Karo             
-          const userRes = await axios.get(`http://localhost:5000/api/getoneuser/${userId}`, { withCredentials: true });
+          const userRes = await axios.get(`${process.env.REACT_APP_API_URL}/api/getoneuser/${userId}`, { withCredentials: true });
 
           console.log("Data",userRes);
           // ✅ Context me Store Karo

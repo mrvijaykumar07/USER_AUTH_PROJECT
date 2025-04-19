@@ -25,7 +25,11 @@ function AuthPage() {
 
     setLoading(true);
     try {
-      const url = activeTab === "register" ? "http://localhost:5000/api/create" : "http://localhost:5000/api/login";
+      const baseURL = process.env.REACT_APP_API_URL;
+      const url = activeTab === "register"
+        ? `${baseURL}/api/create`
+        : `${baseURL}/api/login`;
+        
       const payload = activeTab === "register" ? { fname: firstName, lname: lastName, email, password } : { email, password };
       const response = await axios.post(url, payload, { withCredentials: true });
 

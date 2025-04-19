@@ -21,8 +21,9 @@ const Edit = () => {
   const fetchSingleUserData = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:5000/api/getoneuser/${id}`
+        `${process.env.REACT_APP_API_URL}/api/getoneuser/${id}`
       );
+      
       setOneData(response.data);
       setFirstName(response.data.fName || "");
       setLastName(response.data.lName || "");
@@ -40,7 +41,12 @@ const Edit = () => {
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
-      await axios.put(`http://localhost:5000/api/update/${id}`, newData);
+      await axios.put(
+        `${process.env.REACT_APP_API_URL}/api/update/${id}`,
+        newData
+      );
+      
+
       navigate("/");
     } catch (error) {
       console.error("Error updating data", error);

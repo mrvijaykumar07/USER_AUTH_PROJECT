@@ -39,3 +39,7 @@ app.use("/api", userRoutes);
 app.listen(process.env.PORT, () => {
   console.log(` Your Server is running on http://localhost:${process.env.PORT}`);
 });
+
+app.get("/", (req, res) => {
+  res.send("Backend is running!");
+});

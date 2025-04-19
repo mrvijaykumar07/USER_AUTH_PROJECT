@@ -20,7 +20,10 @@ const RegisterLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const url = isLogin ? "http://localhost:5000/api/login" : "http://localhost:5000/api/create";
+    const url = isLogin 
+    ? `${process.env.REACT_APP_API_URL}/api/login` 
+    : `${process.env.REACT_APP_API_URL}/api/create`;
+  
     
     try {
       const response = await axios.post(url, formData, { withCredentials: true });

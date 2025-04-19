@@ -27,7 +27,8 @@ const VerifyUser = () => {
     setErrorMessage("");
 
     try {
-      const response = await axios.post("http://localhost:5000/api/verifyOTP", { email, otp }, { withCredentials: true });
+      const response = await axios.post(`${process.env.REACT_APP_API_URL}/api/verifyOTP`, { email, otp }, { withCredentials: true });
+
 
       if (response.data.success) {
         alert("Email verified successfully!");

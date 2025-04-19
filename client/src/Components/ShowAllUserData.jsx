@@ -7,7 +7,8 @@ const ShowAllUserData = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get("http://localhost:5000/api/getall");
+      const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/getall`);
+
       if (response.data && response.data.length > 0) {
         setAlldata(response.data);
       } else {
@@ -19,7 +20,8 @@ const ShowAllUserData = () => {
   };
 
   const deleteUser = async (id) => {
-    await axios.delete(`http://localhost:5000/api/deleteuser/${id}`);
+    await axios.delete(`${process.env.REACT_APP_API_URL}/api/deleteuser/${id}`);
+
     setAlldata(alldata.filter(user => user._id !== id));
   };
 
