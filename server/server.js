@@ -25,12 +25,14 @@ app.use((req, res, next) => {
 });
 
 // ✅ CORS Middleware
+// Backend: Express.js CORS setup
 app.use(
   cors({
-    origin: "http://localhost:3000",
-    credentials: true,
+    origin: "https://user-auth-project.vercel.app", // Replace with your frontend URL
+    credentials: true, // Allow credentials like cookies
   })
 );
+
 
 connectDB();
 
